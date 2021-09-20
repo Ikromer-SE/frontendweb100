@@ -6,5 +6,9 @@ import { Component } from '@angular/core';
   styleUrls: ['./app.component.css']
 })
 export class AppComponent {
-  title = 'frontendweb100';
+  title = 'Frontend Web 100 - Progressive ITU';
+
+  changeTitle() {
+    this.title = "Izaak Waz Here"
+  }
 }
