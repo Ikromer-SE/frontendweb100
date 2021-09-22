@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, Input } from '@angular/core';
 import { TodoListItemModel } from 'src/app/models';
 
 @Component({
@@ -8,12 +8,8 @@ import { TodoListItemModel } from 'src/app/models';
 })
 export class TodoListComponent {
 
-  items: TodoListItemModel[] = [
-    { description: 'Empty boxes in basement' },
-    { description: 'Put garden hoses in garage' }
-  ];
+  @Input() items: TodoListItemModel[] = [];
+  @Input() caption: string = '';
 
   constructor() { }
-
-
 }
