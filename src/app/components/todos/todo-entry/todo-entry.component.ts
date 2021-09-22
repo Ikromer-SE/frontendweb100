@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder, FormGroup } from '@angular/forms';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 
 @Component({
   selector: 'app-todo-entry',
@@ -9,12 +9,18 @@ import { FormBuilder, FormGroup } from '@angular/forms';
 export class TodoEntryComponent {
 
   form: FormGroup = this.formBuilder.group({
-    'item': ['']
+    'item': ['', [Validators.required, Validators.minLength(3)]]
   });
 
   constructor(private formBuilder: FormBuilder) { }
 
+  get item() { return this.form.get('item') };
+
   submit() {
-    console.log(this.form.value);
+    if (!this.form.valid) {
+      console.warn('This form is invalid!');
+    } else {
+      console.log(this.form.value);
+    }
   }
 }

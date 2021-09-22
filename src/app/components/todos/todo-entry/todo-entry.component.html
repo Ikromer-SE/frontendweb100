@@ -3,8 +3,15 @@
   <div class="form-group">
     <label for="item">Item</label>
     <input class="form-control"
+           autofocus
            formControlName="item"
            name="item">
+  </div>
+  <div class="alert alert-danger"
+       *ngIf="item?.errors && (item?.touched || item?.dirty)">
+    <p *ngIf="item?.errors?.required">This is required</p>
+    <p *ngIf="item?.errors?.minlength">This has to be at least {{item?.errors?.minlength?.requiredLength }} letters.
+    </p>
   </div>
   <button type="submit"
           class="btn btn-primary">Add Item To List</button>
