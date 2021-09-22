@@ -11,6 +11,7 @@ import { AboutComponent } from './components/about/about.component';
 import { PrivacyComponent } from './components/privacy/privacy.component';
 import { TodoEntryComponent } from './components/todos/todo-entry/todo-entry.component';
 import { TodoListComponent } from './components/todos/todo-list/todo-list.component';
+import { ReactiveFormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [
@@ -26,7 +27,8 @@ import { TodoListComponent } from './components/todos/todo-list/todo-list.compon
   ],
   imports: [
     BrowserModule,
-    AppRoutingModule
+    AppRoutingModule,
+    ReactiveFormsModule
   ],
   providers: [],
   bootstrap: [AppComponent]
