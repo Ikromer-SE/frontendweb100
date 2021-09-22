@@ -1,14 +1,11 @@
 <header>
   <h3>To Do List</h3>
 </header>
-<div class="alert alert-danger"
-     *ngIf="errorMessage">
-  {{ errorMessage }}
-</div>
 <section>
   <app-todo-entry (itemAdded)="onItemAdded($event)"></app-todo-entry>
 </section>
 <section>
-  <app-todo-list caption="Your To Do List - GET IT DONE"
-                 [items]="todoList"></app-todo-list>
+  <app-todo-list (itemCompleted)="onItemRemoved($event)"
+                 caption="Your To Do List - GET IT DONE"
+                 [items]="(todoList$ | async) || []"></app-todo-list>
 </section>

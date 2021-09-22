@@ -12,6 +12,7 @@ import { PrivacyComponent } from './components/privacy/privacy.component';
 import { TodoEntryComponent } from './components/todos/todo-entry/todo-entry.component';
 import { TodoListComponent } from './components/todos/todo-list/todo-list.component';
 import { ReactiveFormsModule } from '@angular/forms';
+import { TodosDataService } from './services/to-do-data.service';
 
 @NgModule({
   declarations: [
@@ -30,7 +31,7 @@ import { ReactiveFormsModule } from '@angular/forms';
     AppRoutingModule,
     ReactiveFormsModule
   ],
-  providers: [],
+  providers: [TodosDataService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
+import { Observable } from 'rxjs';
 import { TodoListItemModel } from 'src/app/models';
+import { TodosDataService } from 'src/app/services/to-do-data.service';
 
 @Component({
   selector: 'app-todos',
@@ -8,24 +10,21 @@ import { TodoListItemModel } from 'src/app/models';
 })
 export class TodosComponent implements OnInit {
 
-  todoList: TodoListItemModel[] = [
-    { description: 'Empty boxes in basement' },
-    { description: 'Put Garden Hoses in Garage' }
-  ];
+  todoList$!: Observable<TodoListItemModel[]>;
 
   errorMessage: string = '';
 
-  constructor() { }
+  constructor(private service: TodosDataService) { }
 
   ngOnInit(): void {
+    this.todoList$ = this.service.getDataAsObservable();
   }
 
   onItemAdded(description: string) {
-    if (this.todoList.some(todo => todo.description === description)) {
-      this.errorMessage = 'You already have that on your list!';
-    } else {
-      this.todoList = [{ description }, ...this.todoList];
-      this.errorMessage = '';
-    }
+    this.service.addItem(description);
+  }
+
+  onItemRemoved(description: string) {
+    this.service.removeItem(description);
   }
 }
