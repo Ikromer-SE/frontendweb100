@@ -1,11 +1,12 @@
 <form [formGroup]='form'
-      (ngSubmit)="submit()">
+      (ngSubmit)="submit(itemElement)">
   <div class="form-group">
     <label for="item">Item</label>
     <input class="form-control"
            autofocus
            formControlName="item"
-           name="item">
+           name="item"
+           #itemElement>
   </div>
   <div class="alert alert-danger"
        *ngIf="item?.errors && (item?.touched || item?.dirty)">

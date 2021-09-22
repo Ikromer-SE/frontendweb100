@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, EventEmitter, OnInit, Output } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 
 @Component({
@@ -8,6 +8,8 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 })
 export class TodoEntryComponent {
 
+  @Output() itemAdded = new EventEmitter<string>();
+
   form: FormGroup = this.formBuilder.group({
     'item': ['', [Validators.required, Validators.minLength(3)]]
   });
@@ -16,11 +18,15 @@ export class TodoEntryComponent {
 
   get item() { return this.form.get('item') };
 
-  submit() {
+  submit(el: HTMLInputElement) {
     if (!this.form.valid) {
       console.warn('This form is invalid!');
     } else {
-      console.log(this.form.value);
+      const description = this.item?.value;
+      this.itemAdded.emit(description);
+      el.value = '';
+      el.focus();
+
     }
   }
 }

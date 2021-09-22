@@ -13,9 +13,19 @@ export class TodosComponent implements OnInit {
     { description: 'Put Garden Hoses in Garage' }
   ];
 
+  errorMessage: string = '';
+
   constructor() { }
 
   ngOnInit(): void {
   }
 
+  onItemAdded(description: string) {
+    if (this.todoList.some(todo => todo.description === description)) {
+      this.errorMessage = 'You already have that on your list!';
+    } else {
+      this.todoList = [{ description }, ...this.todoList];
+      this.errorMessage = '';
+    }
+  }
 }
